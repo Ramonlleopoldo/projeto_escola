@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container-noticia {% if noticia.imagens.all %} com-imagens{% endif %}">
+    {% if noticia.imagens.all %}
+    <div class="galeria-box">
+        <div class="miniaturas">
+            {% for imagem in noticia.imagens.all %}
+            <img class="thumb" src="{{ imagem.arquivo.url }}" onclick="trocarImagem(this.src)" alt="Foto da noticia">
+            {% empty %}
+            <span class="sem-fotos">Sem fotos adicionais</span>
+            {% endfor %}
+        </div>
+        <div class="imagem-principal">
+            {% if noticia.imagens.all %}
+            <img id="imgDestaque" src="{{ noticia.imagens.first.arquivo.url }}" alt="{{ noticia.titulo }}">
+            {% else %}
+            <img src="/static/img/sem-foto.jpg" alt="Sem imagem">
+            {% endif %}
+        </div>
+
+    </div>
+    {% endif %}
+
+    <div class="texto-noticia">
+        <h1>{{ noticia.titulo }}</h1>
+        <small>Publicado em: {{ noticia.data_criacao|date:"d/m/Y" }}</small>
+
+        <hr>
+
+        <div class="conteudo">
+            {{ noticia.descricao|linebreaks }}
+        </div>
+
+        <a href="{% url 'lista_noticias' %}" class="btn-voltar">Voltar para notícias</a>
+    </div>
+
+</div>
+
+<style>
+    .container-noticia {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin: 40px auto;
+        max-width: 1100px;
+    }
+
+    .container-noticia.com-imagens {
+        flex-direction: row;
+        /* Muda para lado a lado */
+    }
+
+    .galeria-box {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .imagem-principal img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .miniaturas {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        overflow-x: auto;
+    }
+
+    .thumb {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: 0.3s;
+    }
+
+    .thumb:hover {
+        opacity: 1;
+    }
+
+    .texto-noticia {
+        flex: 1;
+    }
+
+    .conteudo {
+        margin-bottom: 10px;
+    }
+
+    .btn-voltar {
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        /* opcional */
+    }
+
+    /* Responsivo para celular */
+    @media (max-width: 768px) {
+        .container-noticia.com-imagens {
+            flex-direction: column;
+        }
+
+        .galeria-box {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<script>
+    function trocarImagem(src) {
+        document.getElementById('imgDestaque').src = src;
+    }
+</script>
+
+{% endblock %}

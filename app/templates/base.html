@@ -1,0 +1,165 @@
+<style>
+    /* 1. O Box-Sizing Mágico (Facilita muito o layout) */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* 2. Remove as margens padrão do navegador */
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    /* 3. Garante que o corpo ocupe a tela e define a fonte */
+    body {
+        line-height: 1.5;
+        /* Altura da linha para boa leitura */
+        -webkit-font-smoothing: antialiased;
+        /* Deixa a fonte mais nítida */
+        min-height: 100vh;
+    }
+
+    /* 4. Faz imagens e vídeos nunca estourarem o tamanho da tela */
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* 5. Remove a decoração feia de botões e inputs */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    /* 6. Remove a quebra de linha automática de títulos (opcional) */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        overflow-wrap: break-word;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    :root {
+        /* É aqui que a mágica acontece. */
+        /* O nome da variável DEVE começar com dois traços (--) */
+
+        --azul-escola: #0056b3;
+        /* A cor do logo */
+        --amarelo-escola: #FFD700;
+        /* A cor do uniforme */
+        --cinza-texto: #333333;
+        /* Cor para leitura */
+        --fundo-site: #f4f4f9;
+    }
+
+    .azul-escola {
+        background-color: var(--azul-escola);
+    }
+
+    .amarelo-escola {
+        background-color: var(--amarelo-escola);
+    }
+
+    body {
+        background-color: var(--fundo-site);
+        padding: 30px;
+    }
+
+    header {
+        margin: 0 auto;
+        max-width: 1400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1;
+    }
+
+    .conteudo-centro {
+        text-align: center;
+    }
+
+    .titulo-nome {
+        font-size: 3.125rem;
+        font-weight: 900;
+    }
+
+    .escola-nome {
+        font-size: 1.875rem;
+    }
+
+    .detalhe {
+        max-width: 588px;
+        height: 6px;
+    }
+
+    nav {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ol {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    nav ol li a {
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        /* opcional */
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Melchiades</title>
+</head>
+
+<body>
+    <header>
+        <div class="conteudo-centro">
+            <span class="titulo-nome">JORNAL ESCOLAR</span>
+            <div class="detalhe azul-escola"></div>
+            <span class="escola-nome">E.E.B. Melchíades Bonifácio Espíndola</span>
+            <div class="detalhe amarelo-escola"></div>
+        </div>
+    </header>
+    <nav>
+        <ol>
+            <li><a href="#">INICIO</a></li>
+            <li><a href="">CONTATOS</a></li>
+        </ol>
+    </nav>
+    <main">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>
