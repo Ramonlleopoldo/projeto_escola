@@ -1,4 +1,6 @@
+import html
 from django.db import models
+from django.utils.html import strip_tags
 
 
 class Categoria(models.Model):
@@ -21,13 +23,19 @@ class Noticia(models.Model):
 
     @property
     def breve_descricao(self):
-        texto = self.descricao
-        if len(texto) <= 100:
-            return texto
+        # Remove as tags HTML (<p>, <b>, etc)
+        texto_sem_tags = strip_tags(self.descricao)
+        
+        # Converte entidades (&nbsp; vira espaço, &amp; vira &, etc)
+        texto_limpo = html.unescape(texto_sem_tags)
+        
+        # Remove espaços extras e quebras de linha suja
+        texto_final = " ".join(texto_limpo.split())
+
+        if len(texto_final) <= 100:
+            return texto_final
         else:
-            corte = texto[:100]
-        # Corta no último espaço para não quebrar palavra
-        return corte.rsplit(" ", 1)[0] + "..."
+            return texto_final[:100].rsplit(" ", 1)[0] + "..."
 
     class Meta:
         ordering = ["-data_criacao"]

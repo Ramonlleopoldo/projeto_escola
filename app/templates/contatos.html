@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    /* Container Principal */
+    .contato-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    /* Estilo do Título */
+    .titulo-secao {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    /* Layout da Caixa Branca */
+    .conteudo-contato {
+        display: flex;
+        justify-content: center; /* Centraliza a caixa na tela */
+        background: white;
+        padding: 50px; /* Aumentei um pouco o espaço interno */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px; /* Limita a largura para não ficar muito esticado */
+        margin: 0 auto; /* Garante que fique no meio */
+    }
+
+    /* Lista de Informações */
+    .info-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .item-info {
+        display: flex;
+        align-items: center; /* Alinha o ícone com o texto */
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee; /* Linha sutil para separar itens */
+        padding-bottom: 20px;
+    }
+
+    /* Remove a linha do último item */
+    .item-info:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .icone {
+        font-size: 2rem;
+        margin-right: 20px;
+        background-color: #e0f7fa;
+        color: #007bff;
+        padding: 10px;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        min-width: 60px; /* Garante que o ícone não amasse no celular */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .detalhes h3 {
+        font-size: 1.2rem;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+
+    .detalhes a, .detalhes p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    /* Hover nos links */
+    .detalhes a:hover {
+        color: #007bff !important;
+        text-decoration: underline !important;
+    }
+
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 600px) {
+        .conteudo-contato {
+            padding: 20px;
+        }
+        
+        .item-info {
+            flex-direction: column; /* No celular, ícone fica em cima */
+            text-align: center;
+        }
+
+        .icone {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+
+<section class="contato-container">
+    <div class="titulo-secao">
+        <h2>Fale Conosco</h2>
+        <p>Tem alguma dúvida? Entre em contato pelos canais abaixo:</p>
+    </div>
+
+    <div class="conteudo-contato">
+        <div class="info-box">
+            
+            <div class="item-info">
+                <span class="icone">📍</span>
+                <div class="detalhes">
+                    <h3>Endereço</h3>
+                    <a href="https://www.google.com/maps/search/R.+Get%C3%BAlio+Vargas,+488+-+Centro,+Balne%C3%A1rio+Rinc%C3%A3o+-+SC,+88836-000"
+                       target="_blank" rel="noopener noreferrer"
+                       style="text-decoration: none; color: inherit; display: block;">
+                        R. Getúlio Vargas, 488 - Centro,<br> Balneário Rincão - SC, 88836-000
+                    </a>
+                </div>
+            </div>
+
+            <div class="item-info">
+                <span class="icone">📧</span>
+                <div class="detalhes">
+                    <h3>E-mail</h3>
+                    <a href="mailto:contato@escola.com.br" style="text-decoration: none; color: inherit;">
+                        contato@escola.com.br
+                    </a>
+                </div>
+            </div>
+
+            <div class="item-info">
+                <span class="icone">📞</span>
+                <div class="detalhes">
+                    <h3>Telefone</h3>
+                    <a href="tel:+554834031143" style="text-decoration: none; color: inherit;">
+                        (48) 3403-1143
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

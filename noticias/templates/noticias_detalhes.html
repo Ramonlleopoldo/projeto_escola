@@ -28,7 +28,7 @@
         <hr>
 
         <div class="conteudo">
-            {{ noticia.descricao|linebreaks }}
+            {{ noticia.descricao|safe }}
         </div>
 
         <a href="{% url 'lista_noticias' %}" class="btn-voltar">Voltar para notícias</a>
